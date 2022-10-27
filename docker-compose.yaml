@@ -1,0 +1,24 @@
+version: '3'
+services:
+  python:
+    image: python
+    build: 
+      context: .
+      dockerfile: .Dockerfile
+    volumes:
+      - ./projects/:/root/projects
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  latex:
+    image: latex
+    build: 
+      context: .
+      dockerfile: latex.Dockerfile
+    volumes:
+      - ./projects/:/root/projects
