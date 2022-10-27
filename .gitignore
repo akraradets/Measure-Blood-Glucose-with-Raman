@@ -1,0 +1,4 @@
+# vscode-server cache
+.vscode-server/latex/*
+.vscode-server/python/*
+!.keep

@@ -1,0 +1,37 @@
+\appendix
+\renewcommand{\appendixname}{APPENDIX}
+\captionsetup[table]{labelfont=bf,name=Table\space,labelsep=space}
+\captionsetup[figure]{labelfont=bf,name=Figure\space,labelsep=space}
+\renewcommand\thefigure{\thechapter\arabic{figure}} 
+\newcommand{\stoptocwriting}{%
+  \addtocontents{toc}{\protect\setcounter{tocdepth}{-5}}}
+\newcommand{\resumetocwriting}{%
+  \addtocontents{toc}{\protect\setcounter{tocdepth}{\arabic{tocdepth}}}}
+
+\captionsetup{
+  singlelinecheck=false,
+  textfont=bf
+}
+
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\bf APPENDICES}
+\begin{center}
+    \vspace*{\fill}
+    \large{\bf APPENDICES}
+    \vspace*{\fill}
+\end{center}
+\newpage
+
+\phantomsection
+\addcontentsline{toc}{section}{\bf \uppercase{APPENDIX A: TITLE}}
+\stoptocwriting
+\chapter{\uppercase{TITLE}}
+\resumetocwriting
+
+\begin{figure}[h]
+\caption{Doge.}
+\centerline{\includegraphics[width=3in]{figures/doge.jpeg}}
+\label{fig:doge2}
+\small{\textit{Note.} Notice the different styling of figures in the appendix...}
+\end{figure}
