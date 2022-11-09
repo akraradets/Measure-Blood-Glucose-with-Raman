@@ -2,35 +2,79 @@
 
 \section{Background of the Study}
 
-Diabetes is now in the top three leading causes of death and disability in the United States \citep{cdc}. 
-\cite{who} states that there are 422 million people who are affected by diabetes throughout the globe. 
-This number has been rising for the past three decades and there is a global agreement to stop this trend by 2025.
-Although there is no cure for this condition, controlling glycemic can help the patient to live 5 to 8 years longer \citep{controlGlycemic}.
+Building a wearable blood glucose device can help diabetes to monitor their glycemic throughout the day. 
+The term "wearable" could be seen as a combination of non-invasive, continuous, and portable devices. 
+Currently, continuous glucose monitoring (CGM) systems have been recognized as the ideal monitoring systems for glycemic control of diabetic patients \citep{continuous2021}.
+However, current CGM devices are not reliable in terms of accuracy and required sensor implantation which considers being a minimally invasive \citep{CGMminimalinvasive}
 
-
+Fortunately, the analyte analysis noninvasive techniques have been studied as a means to measure glycemic continuously. 
+Among techniques, the ones using optical methods yield a better result \citep{opticalBest}.
+Ranging from far infrared to fluorescence spectroscopy, Raman spectroscopy is the most interesting technique. 
+Not only it is insensitive to water, but it is also shown to be able to quantitatively measure glucose transcutaneously \citep{directGlucose}.
+Recently, \cite{ramanGlucoseWatch} shows the prototype of a wearable blood glucose smartwatch that employs Raman spectroscopy. 
+However, evidence of a workable device is absent. 
 
 \section{Statement of the Problem}
 
-\begin{sloppypar}
-However, today glucose meter requires a blood sample to be drawn by pricking the patient's finger \citep{todayGlucoseMeter}.
-This invasive method causes both pain and risk of infection to the patients. Therefore, glycemic is not measured as often as recommended \citep{NIR2017, continuous2008, continuous2018}.
-Therefore, we want to have a non-invasive self-monitoring blood glucose (SMBG) method which will enable continuous measurement.
-\end{sloppypar}
+One important variable that impact the overall design of the wearable device is the measuring site. 
+Forearm \citep{forearm2005, forearm2014}, thenar \citep{glucobeam}, and nail fold \citep{ramanNailFold2019} have been selected as measuring sites with promising results. 
+While \cite{sitecompare} shows that the forearm is the most effective site compared to the wrist and index finger, it remains unclear which site is the best due to different equipment, parameters, methodology, and analysis styles across the papers.
 
-A recent study has shown that Raman Spectroscopy is a viable technique to measure glycemic. 
-By selecting the measuring site and employing the machine learning technique, the root-mean-square error (RMSE) can be as low as 0.26601 mmol/L \citep{ramanNailFold2019}. 
-As a result, Raman Spectroscopy is selected as a measuring technique.
+The experiment must be conducted to finalize and confirm the measuring scheme. 
+Raman spectroscopy with 785 nm laser was used in \citep{forearm2014, sitecompare, ramanNailFold2019} and showed success.
+However, the schemes were different. 
+Measuring configuration is 10 times accumulation of 10 seconds exposure in \cite{forearm2014}, nine times accumulation of 30 seconds exposure in \citep{sitecompare}, and six times accumulation of 40 seconds exposure in \citep{ramanNailFold2019}. 
+Since we want to develop a wearable device, a benchmark of 15 seconds is chosen following the SpO2 measuring of the Apple Watch 8 \citep{applewatch}.
+
+Data were obtained using the oral glucose tolerance test (OGTT) from 12 volunteers for 10 days in \citep{ramanNailFold2019}, a single collection from 46 volunteers (including 32 type-2 diabetes, 10 prediabetes) in \citep{sitecompare} and from 166 patients in \citep{forearm2014}.
+All labels were obtained by drawing a blood sample from the subject.
+
+Modeling the data with multiple linear regression (MLR) + hand-pick features (911, 1060, 1125, 1450 $\text{cm}^{-1}$) result in prediction correlation $R = 0.85$ for intrasubject cross-validation (CV) and $R = 0.91$ for intersubject CV \citep{directGlucose}, a back propagation artificial neural network (BP-ANN) + principal component analysis (PCA) achieved root-means-square error (RMSE) of 0.45 mmol/L and $R^2$ of 0.95 for intrasubject modeling and RMSE of 0.27 and $R^2$ of 0.98 for intersubject modeling \citep{ramanNailFold2019}.
+\cite{sitecompare} showed the use of self-organizing maps (SOM) + RReliefF as automatic feature selection and feed-forward artificial neural networks (FFNN) can achieve up to RMSE of 30.12 mg/dL (1.7 mmol/L).
 
 \section{Objectives}
 
-Our objective is to develop a portable self-monitoring blood glucose meter. To achieve this, we separate the project into three studies.
+Our objective is to develop a wearable self-monitoring blood glucose meter. To achieve this, we separate the project into two studies.
 
-\subsection*{Study 1: Confirm the parameters}
+\subsection{Study 1: Confirming the parameters}
 
-1. Reproduce the 
-Introduce your main objective first in one sentence, followed by a bulleted list of specific objectives, left aligned.
-1.	Follow a 0.5-inch Tab setting.
-2.	Add more here.
+The first study aims to confirm the parameters starting from laser selection (wavelength), measuring time, and measuring site.
+For now, we pre-select the laser to 785 nm as it offers (1) good skin penetration the skin compared to 830 nm \citep{opticalBest}, (2) availability of cost-efficient and compact, high-quality laser sources \citep{785good}.
+The measuring time has to be tested with the actual Raman Instrument.
+The measuring site will be the index fingertip, index nail fold, wrist, and forearm.
+
+Metric: A fingerprint of glucose should be presented (high correlation) with minimal fluorescence and total time.
+
+Outcome: Ranking measuring sites by correlation. Confirm measuring time.
+\subsection{Study 2: Raman scattering of blood glucose study}
+\label{intro-s2}
+
+The second study aims to understand and reproduce the Raman scattering of blood glucose.
+This study will require 15 subjects for data collection using the OGTT scheme.
+The preprocessing and modeling will be done following the previous works.
+At this stage, the performance and power consumption of models will be recorded for the next study.
+
+Metric: Selected features are agreed to in prior works. Modeling achieves over 80\% of Clarke error grid (CEG) zone A.
+
+Outcome: By performing $\Delta$G \citep{directGlucose}, we confirm the peak of glucose in the blood. Confirm the model to use.
+
+\subsection{Study 3: Designing and developing wearable blood glucose device}
+
+The third study aims to finalize the design of our wearable device and develop a prototype.
+The feature will include storage for self-data collection and upload to the cloud.
+
+Metric: Workable device with blood glucose prediction similar to the \ref{intro-s2}.
+
+Outcome: Prototype device.
+
+\subsection{Study 4: Device Evaluation}
+
+The fourth study aims to evaluate the prototype.
+We repeat the \ref{intro-s2} experiment but this time substituting Raman instrument with our prototype.
+
+Metric: CEG zone A.
+
+Outcome: The prototype achieve over 80\% of CEG zone A.
 
 \section{Organization of the Study}
 Start your paragraph here.
