@@ -140,12 +140,40 @@ Adding to the neural network, FFNN is primarily used in modeling glucose in \cit
 Without any feature selection, the RMSE of glucose prediction is 3.1 mmol/L and 30.12 mmol after implementing SOM and RReliefF as automatic feature selection.
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Concentration Limitation}
 
 The usual blood glucose range of a healthy person can be as low as 0.3 - 1 mmol/L and $<$3 mmol/L for diabeties \citep{solutionGlucose}.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Device Evaluation}
+
+To quantify the clinical accuracy of the blood glucose measurement against the reference value, we use Clarke Error Grid \citep{clarke}.
+
+\begin{figure}
+    \caption{A template of Clarke Error Grid}
+    \centerline{\includegraphics[width=3in]{figures/Clarkeerrorgrid.jpeg}}
+    \label{fig:clarkeerrorgrid}
+    % \small{\textit{Note.} Additional notes goes here.}
+\end{figure}
+
+Figure~\ref{fig:clarkeerrorgrid} shows the grid. It breaks down a scatter plot of a reference glucose meter and an evaluated glucose meter into five regions:
+
+\begin{itemize}
+    \item Region A are those values within 20\% of the reference sensor,
+    \item Region B contains points that are outside 20\% but would not lead to inappropriate treatment,
+    \item Region C are those points leading to unnecessary treatment,
+    \item Region D are those points indicating a potentially dangerous failure to detect hypoglycemia or hyperglycemia, and
+    \item Region E are those points that would confuse treatment of hypoglycemia for hyperglycemia and vice versa.
+\end{itemize}
+
+
+The reference device will be the Accu-Chek® Guide Meter with accuracy claims on the website as 10/10 accuracy: 95\% of measured glucose results shall fall within $\pm$10 mg/dL (0.6 mmol/L) of lab reference value for blood glucose concentrations $<$100 mg/dL (5.6 mmol/L) and within 10\% for blood glucose concentrations $\geq$100 mg/dL (5.6 mmol/L) \citep{accu2022}.
+
+
+
 
 % \begin{equation}
 %     y = mx+b
