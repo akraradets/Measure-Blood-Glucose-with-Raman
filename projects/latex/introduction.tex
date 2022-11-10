@@ -16,25 +16,47 @@ However, evidence of a workable device is absent.
 
 \section{Statement of the Problem}
 
-One important variable that impact the overall design of the wearable device is the measuring site. 
+\begin{sloppypar}
+Raman spectroscopy is catching attention as the promising method for measuring glycemic \citep{directGlucose} and agreed upon by multiple researchers \citep{forearm2005, ramanNailFold2019, directGlucose, sitecompare}.
+However, the reported spectra are different.
+\cite{solutionGlucose} reports the top three peaks of Glucose solution are 1125, 1060, and 1366 $\text{cm}^{-1}$ where 1125 $\text{cm}^{-1}$ is also reported by \cite{directGlucose,solutionGlucose} when measuring the glucose in vivo.
+Others report 1130 $\text{cm}^{-1}$ when measuring at nail fold \citep{ramanNailFold2019},  544, 837, and 1060 $\text{cm}^{-1}$ when measuring at the forearm, 544 and 837 $\text{cm}^{-1}$ also peaks when measuring at index finger and wrist \citep{sitecompare}.
+It is important to confirm the peaks of blood glucose Raman spectra.
+\end{sloppypar}
+
+\begin{sloppypar}
+One important variable that impact the overall design of the wearable device is the measuring site.
 Forearm \citep{forearm2005, forearm2014}, thenar \citep{glucobeam}, and nail fold \citep{ramanNailFold2019} have been selected as measuring sites with promising results. 
-While \cite{sitecompare} shows that the forearm is the most effective site compared to the wrist and index finger, it remains unclear which site is the best due to different equipment, parameters, methodology, and analysis styles across the papers.
+While~\cite{sitecompare} shows that the forearm is the most effective site compared to the wrist and index finger, it remains unclear which site is the best due to different equipment, parameters, methodology, and analysis styles across the papers.
+Fortunately,~\cite{directGlucose} showed that glycemic level has a linear relationship with 1125 $\text{cm}^{-1}$ normalized with 1450 (protein/lipid) $\text{cm}^{-1}$ and 1549 $\text{cm}^{-1}$ in the case of~\cite{solutionGlucose}.
+As a result, we can identify the peaks of glucose by following the subtraction technique of~\cite{directGlucose}.
+\end{sloppypar}
 
 The experiment must be conducted to finalize and confirm the measuring scheme. 
 Raman spectroscopy with 785 nm laser was used in \citep{forearm2014, sitecompare, ramanNailFold2019} and showed success.
 However, the schemes were different. 
 Measuring configuration is 10 times accumulation of 10 seconds exposure in \cite{forearm2014}, nine times accumulation of 30 seconds exposure in \citep{sitecompare}, and six times accumulation of 40 seconds exposure in \citep{ramanNailFold2019}. 
+In the lab scenario, the measuring scheme can be any that yields the wanted result. 
+In contrast, a wearable does have a power and battery limit. 
+The measuring scheme should be selected to suit our goal.
 Since we want to develop a wearable device, a benchmark of 15 seconds is chosen following the SpO2 measuring of the Apple Watch 8 \citep{applewatch}.
 
-Data were obtained using the oral glucose tolerance test (OGTT) from 12 volunteers for 10 days in \citep{ramanNailFold2019}, a single collection from 46 volunteers (including 32 type-2 diabetes, 10 prediabetes) in \citep{sitecompare} and from 166 patients in \citep{forearm2014}.
-All labels were obtained by drawing a blood sample from the subject.
+Participant selection and experiment are different across papers.
+A continuous data collection is performed with an oral glucose tolerance test (OGTT) to influence the glycemic \citep{ramanNailFold2019, forearm2005}.
+This experiment is done with a small set of healthy participants (12 \citep{ramanNailFold2019}, 17 \citep{forearm2005}).
+A routine data collection is done with 15 diabetes with different ranges of skin phototypes for 28 days \citep{glucobeam-proof}.   
+Others perform a single data collection with a larger group of diabetes (46 \citep{sitecompare}, 166 \citep{forearm2014}).
+The OGTT will be used to obtain more samples with different glycemic level.
 
-Modeling the data with multiple linear regression (MLR) + hand-pick features (911, 1060, 1125, 1450 $\text{cm}^{-1}$) result in prediction correlation $R = 0.85$ for intrasubject cross-validation (CV) and $R = 0.91$ for intersubject CV \citep{directGlucose}, a back propagation artificial neural network (BP-ANN) + principal component analysis (PCA) achieved root-means-square error (RMSE) of 0.45 mmol/L and $R^2$ of 0.95 for intrasubject modeling and RMSE of 0.27 and $R^2$ of 0.98 for intersubject modeling \citep{ramanNailFold2019}.
-\cite{sitecompare} showed the use of self-organizing maps (SOM) + RReliefF as automatic feature selection and feed-forward artificial neural networks (FFNN) can achieve up to RMSE of 30.12 mg/dL (1.7 mmol/L).
+Another inconsistency throughout the papers is data modeling.
+Modeling the data with multiple linear regression (MLR) + hand-pick features (911, 1060, 1125, 1450 $\text{cm}^{-1}$) result in prediction correlation $R = 0.85$ for intrasubject cross-validation (CV) and $R = 0.91$ for intersubject CV \citep{directGlucose}.
+Full spectrum analysis using partial least squares (PLS) \citep{forearm2014, sitecompare, forearm2005, directGlucose} is widely used, and a few neural network approach \citep{ramanNailFold2019, sitecompare}.
+However, comparing model performance is difficult since each paper employs a different preprocessing technique.
+For a wearable with power and battery constraints, the suited model should provide good prediction accuracy (over 80\% of Clarke error grid (CEG) zone A) with low usage of resources.
 
 \section{Objectives}
 
-Our objective is to develop a wearable self-monitoring blood glucose meter. To achieve this, we separate the project into two studies.
+Our objective is to develop a wearable self-monitoring blood glucose meter. To achieve this, we separate the project into four studies.
 
 \subsection{Study 1: Confirming the parameters}
 
