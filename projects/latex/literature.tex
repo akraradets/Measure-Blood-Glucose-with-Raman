@@ -2,7 +2,8 @@
 
 \chapter{LITERATURE REVIEW}\label{literatureReview}
 
-We review the result of Raman spectra when measuring glucose as a solution (mix with water) and blood (glycemic), the linearity relationship of glucose peaks with glucose concentration, and the data modeling.
+We review the result of Raman spectra of amorphous glucose (glucose fingerprint) when combined with water (glucose solution) and blood (blood glucose). 
+Then, we go into measuring sites and preprocessing techniques, and data modeling.
 
 % \section{Measuring Glucose in blood}
 
@@ -26,43 +27,72 @@ We review the result of Raman spectra when measuring glucose as a solution (mix 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Glucose fingerprint}
 
-Once the incident photons hit the glucose, the inelastic scattering occurs and known as a Raman scattering.
-In glucose solution (glucose + water), Raman scattering peak at 796, 1060, 1125, and 1366 $\text{cm}^{-1}$.
-The intensity of scattered light increase as the concentration of glucose increase \citep{solutionGlucose}. 
-This same phenomena occur when measuring Raman scattering of blood \citep{forearm2005, forearm2014, directGlucose, sitecompare}.
-In \cite{directGlucose}, after subtracting the two Raman spectra measure at two different time points, the spectra peaks at 1125 $\text{cm}^{-1}$.
-Unlike the glucose solution, Raman signal of blood is noisy because of blood contains various substance \citep{ramanNailFold2019}.
-To extract the linearity relationship, the 1125 $\text{cm}^{-1}$ has to be normalized with the peaks of protein and lipid (1450 $\text{cm}^{-1}$ \citep{directGlucose}, 1549 $\text{cm}^{-1}$ \citep{solutionGlucose}).
+The ``glucose fingerprint'' is a characteristic Raman scattering spectrum that appears when glucose is present in the analyte.
+The Raman scattering in glucose solution (glucose and water) exhibits peaks at 796, 1060, 1125, and 1366 $\text{cm}^{-1}$.
+These peaks increase as a function of glucose concentration showing the quantitative property of Raman spectroscopy \citep{solutionGlucose}.
+The glucose fingerprint also exhibits in a more complex analyte as blood when measuring Raman scattering of ISF \citep{forearm2005, forearm2014, directGlucose, sitecompare}.
+\cite{directGlucose} extracts the glucose fingerprint which has a peak at 1125 $\text{cm}^{-1}$ from two noisy Raman signals.
+As a result, Raman spectroscopy can measure blood glucose.
 
-\section{Data modeling}
+% This same phenomena occur when measuring Raman scattering of blood glucose in vivo \citep{forearm2005, forearm2014, directGlucose, sitecompare}.
+% In \cite{directGlucose}, after subtracting the two Raman spectra measure at two different time points, the spectra peaks at 1125 $\text{cm}^{-1}$.
+% Unlike the glucose solution, Raman signal of blood is noisy because of blood contains various substance \citep{ramanNailFold2019}.
+% To extract the linearity relationship, the 1125 $\text{cm}^{-1}$ has to be normalized with the peaks of protein and lipid (1450 $\text{cm}^{-1}$ \citep{directGlucose}, 1549 $\text{cm}^{-1}$ \citep{solutionGlucose}).
+
+\section{Measuring Sites}
+
+% Laser can penetrate the skin around $100 - 200 \mu\text{m}$
+Because the thickness of the human skin varies from place to place, Raman scattering measurements taken at several sites might provide varied results \citep{ramanNailFold2019, sitecompare}.
+The glucose fingerprint signal will be stronger if the laser focuses on the blood vessels \citep{solutionGlucose}.
+Human skin consists of multiple layers called the stratum corneum (SC), epidermis, and dermis \citep{ramanNailFold2019}.
+In most sites (e.g., wrist, forearm, fingertip), the assessed Raman signal is from ISF of SC and epidermis layer \citep{ramanNailFold2019}.
+The following problems may arise when measuring glucose in ISF rather than blood, 
+(1) ISF glucose is lag when compared to blood glucose \citep{bloodvsisf, isflag}, 
+(2) concentration of glucose in ISF is significantly lower than blood \citep{isfconcentration}. 
+As a result, the signal of glucose Raman scattering is weak \citep{ramanNailFold2019}.
+A better strategy is to measure the Raman signal in areas where the laser can reach the dermis better.
+Because the dermis contains microvessels \citep{microvessel-dermis, microvessel-dermis2}, if the site (nailfold) is picked carefully, we can obtain the glucose signal directly from the blood.
+
+\cite{ramanNailFold2019} reports the greater $R^2 = 0.98$ prediction correlation when use nailfold as a measuring site.
+The result is better than the forearm ($R^2 = 0.83$) \citep{forearm2005,forearm2014} and fingertip ($R^2 = 0.91$) \citep{fingertip2011}.
+Recently, \cite{sitecompare} measures Raman glucose at forearm, wrist, and index fingertip and achieves the root-mean-square error (RMSE) of $56.31\pm4.28$, $58.22\pm1.03$, and $56.65\pm8.99$ ml/dL respectively.
+
+\section{Preprocessing techniques and Data modeling}
+
+There are primarily two preprocessing options. 
+Either extracting the features or utilize the complete Raman spectrum as an input.
+The full spectrum analysis pair with partial least squares (PLS) is widely used \citep{forearm2014, sitecompare, forearm2005, directGlucose}.
+The results vary from $R^2 = 0.62$ \citep{directGlucose}, $R^2 = 0.83$ \citep{forearm2005,forearm2014}, and RMSE of around 65 $\pm$ 0.4 ml/dL in~\cite{sitecompare}.
+The preprocessing can be done by hand-pick \citep{directGlucose,solutionGlucose} or automatically \citep{ramanNailFold2019, sitecompare} pick the features.
+Hand-pick features were performed by normalizing the spectra with either protein and lipid peaks (1450 $\text{cm}^{-1}$) \citep{directGlucose} or hemoglobin peaks (1549 $\text{cm}^{-1}$) \citep{solutionGlucose}.
+It demonstrated that the normalized 1125 $\text{cm}^{-1}$ has a linear correlation with in vivo blood glucose at $R^2 = 0.91$ \citep{solutionGlucose}.
+In~\cite{directGlucose}, normalized 911, 1060, 1125 $\text{cm}^{-1}$ with 1450 $\text{cm}^{-1}$ were utilized as inputs of the more complex multiple linear regression (MLR) which achieved $R^2 = 0.91$.
+The automatic feature extraction was demonstrated with PCA \citep{ramanNailFold2019} and SOM \citep{sitecompare}.
 
 
 
-Full spectrum analysis using partial least squares (PLS)  is widely used \citep{forearm2014, sitecompare, forearm2005, directGlucose}.
-The result range from 
-
-Modeling the data with multiple linear regression (MLR) + hand-pick features (911, 1060, 1125, 1450 $\text{cm}^{-1}$) result in prediction correlation $R = 0.85$ for intrasubject cross-validation (CV) and $R = 0.91$ for intersubject CV \citep{directGlucose}.
-Full spectrum analysis using partial least squares (PLS) \citep{forearm2014, sitecompare, forearm2005, directGlucose} is widely used, and a few neural network approach \citep{ramanNailFold2019, sitecompare}.
-However, comparing model performance is difficult since each paper employs a different preprocessing technique.
-For a wearable with power and battery constraints, the suited model should provide good prediction accuracy (over 80\% of Clarke error grid (CEG) zone A) with low usage of resources.
+% Modeling the data with multiple linear regression (MLR) + hand-pick features (911, 1060, 1125, 1450 $\text{cm}^{-1}$) result in prediction correlation $R = 0.85$ for intrasubject cross-validation (CV) and $R = 0.91$ for intersubject CV \citep{directGlucose}.
+% Full spectrum analysis using partial least squares (PLS) \citep{forearm2014, sitecompare, forearm2005, directGlucose} is widely used, and a few neural network approach \citep{ramanNailFold2019, sitecompare}.
+% However, comparing model performance is difficult since each paper employs a different preprocessing technique.
+% For a wearable with power and battery constraints, the suited model should provide good prediction accuracy (over 80\% of Clarke error grid (CEG) zone A) with low usage of resources.
 
 
-In glucose solution, the concentration of 0.1 - 40 mmol/L of glucose in water and Raman shift at 1125 $\text{cm}^{-1}$ has a linear relationship \cite{solutionGlucose}.
-The same case can not be said with blood glucose.
-Since blood contains multiple components, using 1125 $\text{cm}^{-1}$ directly will not work. 
-\cite{directGlucose} shows that the ratio of 1125 and 1450 (protein/lipid peak) $\text{cm}^{-1}$ yield a linear relationship.
-Figure~\ref{fig:bloodGlucose-relative1125} shows that the normalized 1125 $\text{cm}^{-1}$ has a linear relationship with the glucose concentration.
-This same procedure is also presented in \citep{solutionGlucose} where 1549 $\text{cm}^{-1}$ is used to normalize the spectrum.
-On the other hand, \cite{ramanNailFold2019} uses PCA and BP-ANN with an input layer of 3, a hidden layer of 4, and an output layer of 1. 
-While the model achieved an RMSE of 0.27 in intersubject modeling, using PCA is not necessarily means the features in use is a glucose-related feature \citep{directGlucose}.
-Adding to the neural network, FFNN is primarily used in modeling glucose in \citep{sitecompare}. 
-Without any feature selection, the RMSE of glucose prediction is 3.1 mmol/L and 30.12 mmol after implementing SOM and RReliefF as automatic feature selection.
+% In glucose solution, the concentration of 0.1 - 40 mmol/L of glucose in water and Raman shift at 1125 $\text{cm}^{-1}$ has a linear relationship \cite{solutionGlucose}.
+% The same case can not be said with blood glucose.
+% Since blood contains multiple components, using 1125 $\text{cm}^{-1}$ directly will not work. 
+% \cite{directGlucose} shows that the ratio of 1125 and 1450 (protein/lipid peak) $\text{cm}^{-1}$ yield a linear relationship.
+% Figure~\ref{fig:bloodGlucose-relative1125} shows that the normalized 1125 $\text{cm}^{-1}$ has a linear relationship with the glucose concentration.
+% This same procedure is also presented in \citep{solutionGlucose} where 1549 $\text{cm}^{-1}$ is used to normalize the spectrum.
+% On the other hand, \cite{ramanNailFold2019} uses PCA and BP-ANN with an input layer of 3, a hidden layer of 4, and an output layer of 1. 
+% While the model achieved an RMSE of 0.27 in intersubject modeling, using PCA is not necessarily means the features in use is a glucose-related feature \citep{directGlucose}.
+% Adding to the neural network, FFNN is primarily used in modeling glucose in \citep{sitecompare}. 
+% Without any feature selection, the RMSE of glucose prediction is 3.1 mmol/L and 30.12 mmol after implementing SOM and RReliefF as automatic feature selection.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Concentration Limitation}
+% \section{Concentration Limitation}
 
-The usual blood glucose range of a healthy person can be as low as 0.3 - 1 mmol/L and $<$3 mmol/L for diabeties \citep{solutionGlucose}.
+% The usual blood glucose range of a healthy person can be as low as 0.3 - 1 mmol/L and $<$3 mmol/L for diabeties \citep{solutionGlucose}.
 
 
 
