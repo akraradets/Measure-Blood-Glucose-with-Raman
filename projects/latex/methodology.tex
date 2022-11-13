@@ -83,19 +83,29 @@ A total of $15 \times 25 =  375$ Raman samples and $15 \times 8 = 120$ blood sam
 
 \section{Preprocessing and Data Modeling}
 
-The obtained Raman spectra will be normalized by its intensity of 1450 or 1549 $\text{cm}^{-1}$.
-Thus, the preprocessing options will be (1) without normalization, (2) normalize with 1450 $\text{cm}^{-1}$, and (3) normalized with 1549 $\text{cm}^{-1}$.
+The acquired Raman spectra will be normalized by their intensity of 1450 or 1549 $\text{cm}^{-1}$.
+Thus, there are three preprocessing options: (1) without normalization, (2) normalize with 1450 $\text{cm}^{-1}$, and (3) normalized with 1549 $\text{cm}^{-1}$.
 The Linear Regression (LR) model will be used to assess the linearity of 1125 $\text{cm}^{-1}$ with glucose concentration.
 The MLR model with 911, 1060, 1125 $\text{cm}^{-1}$ as inputs we will use for multivariate analysis.
-Full spectrum with PLS will also be used as baseline modeling.
+As a baseline model, full spectrum with PLS will also be employed.
 
 In total, there will be $3 \times 3 = 9$ combinations to compare.
 
 \section{Metric}
 
-
+The model performance will be assessed using the Pearson correlation.
+Additionally, resource usage during prediction will be tracked.
 
 \section{Study 3: Designing and developing wearable blood glucose device}
 
+\textbf{Objective}: Design and develop a prototype of a wearable SMBG.\\
+% \textbf{Independent Variables}: \\
+% \textbf{Dependent Variables}: \\
+\textbf{Outcome}: A prototype.
 
 \section{Study 4: Device Evaluation}
+
+\textbf{Objective}: To evaluate the prototype, we redo Section~\ref{metho-s2} experiment with our prototype.\\
+\textbf{Independent Variables}: Raman scattering of blood\\
+\textbf{Dependent Variables}: Glycemic\\
+\textbf{Outcome}: Prototype achieves glycemic prediction correlation $R^2 > 0.8$ with actual glycemic.
