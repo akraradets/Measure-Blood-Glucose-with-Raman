@@ -27,12 +27,71 @@ Then, we go into measuring sites and preprocessing techniques, and data modeling
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Glucose fingerprint}
 
+\begin{figure}
+    \caption{Raman spectra of glucose solution at different concentration \citep{solutionGlucose}.}
+    \centerline{\includegraphics[width=3in]{figures/solutionGlucose-RS.jpg}} \label{fig:solutionGlucose-RS}
+    % \small{\textit{Note.} Additional notes goes here.}
+\end{figure}
+
+\begin{figure}
+    \caption{A trace of glucose fingerprint in Raman scattering of in vivo blood \citep{solutionGlucose}.}
+    \centerline{\includegraphics[width=3in]{figures/bloodGlucose-RS-2012.jpg}}\label{fig:bloodGlucose-relative1125}
+    % \small{\textit{Note.} Additional notes goes here.}
+\end{figure}
+
 The ``glucose fingerprint'' is a characteristic Raman scattering spectrum that appears when glucose is present in the analyte.
-The Raman scattering in glucose solution (glucose and water) exhibits peaks at 796, 1060, 1125, and 1366 $\text{cm}^{-1}$.
+The Raman scattering in glucose solution (glucose and water) exhibits peaks at 796, 1060, 1125, and 1366 $\text{cm}^{-1}$ (Figure~\ref{fig:solutionGlucose-RS}).
 These peaks increase as a function of glucose concentration showing the quantitative property of Raman spectroscopy \citep{solutionGlucose}.
-The glucose fingerprint also exhibits in a more complex analyte as blood when measuring Raman scattering of ISF \citep{forearm2005, forearm2014, directGlucose, sitecompare}.
+The glucose fingerprint also exhibits in a more complex analyte as blood when measuring Raman scattering of ISF \citep{forearm2005, forearm2014, directGlucose, sitecompare} as show in Figure~\ref{fig:bloodGlucose-relative1125}.
+
+\begin{figure}
+    \caption{(\textbf{A}) Raman spectra of blood glucose obtained by subtracting two Raman signals \citep{directGlucose}.}
+    \centerline{\includegraphics[width=3in]{figures/bloodGlucose-DeltaG.png}}\label{fig:bloodGlucose-DeltaG}
+    % \small{\textit{Note.} Additional notes goes here.}
+\end{figure}
+
 \cite{directGlucose} extracts the glucose fingerprint which has a peak at 1125 $\text{cm}^{-1}$ from two noisy Raman signals.
 As a result, Raman spectroscopy can measure blood glucose.
+
+
+
+\begin{table}[]
+\caption{Assignments of Raman peaks that are identified in the spectra of the microvessels and blood \citep{peak45,forearm2005,peak47,peak48}}
+\begin{center}
+\begin{tabular}{cccc}
+\hline
+\multicolumn{2}{l}{Peak Position ($\text{cm}^{-1}$)} & \multirow{2}{*}{Assignments}  & \multirow{2}{*}{Components} \\ \cline{1-2}
+Microvessels         & Blood         &                               &                             \\ \cline{1-2}
+\hline
+650                  & 643           & P:C-S str                     & Ascorbic acid               \\
+758                  & 752           & $\nu_{15}$                    & Trp                         \\
+837                  & 827           & $\gamma10$                    & Fructose                    \\
+858                  & 855           & $\nu(C-C)$                    & Tyr, lac                    \\
+885                  & -             & -                             & -                           \\
+902                  & 898           & p:C-C skeletal                & Tyr                         \\
+945                  & 940           & $\nu(C-C)$                    & Crtic acid                  \\
+978                  & 971           & p: Skeletal vibr              & Fibrin                      \\
+1004                 & 1004          & $\nu$-ring                    & Phe                         \\
+1027                 & 1026          & $\delta(={C}_{b}{H}_{2})$asym & Lac                         \\
+1130                 & 1129          & $\nu_5$,                      & Lac                         \\
+1163                 & 1157          & $\nu_{44}$                    & Heme                        \\
+1217                 & 1212          & $\nu_5 + \nu_{18}$            & Heme                        \\
+1320                 & 1321          & p: CH2 twist                  & Try                         \\
+1332                 & 1341          & $\nu_{41}$                    & Trp                         \\
+1424                 & 1423          & $\nu_{28}$                    & Acetates                    \\
+1448                 & 1450          & $\delta(={CH}_{2}/{CH}_{3})$  & Trp                         \\
+1551                 & 1546          & $\nu_{11}$                    & Heme                        \\
+1608                 & 1603          & $\nu(C=C)_{\text{venyl}}$     & Heme                        \\
+1660                 & 1653          & Amide I                       & Heme                        \\
+\hline
+\end{tabular}
+\label{tab:bloodpeak}
+\end{center}
+\end{table}
+
+
+
+
 
 % This same phenomena occur when measuring Raman scattering of blood glucose in vivo \citep{forearm2005, forearm2014, directGlucose, sitecompare}.
 % In \cite{directGlucose}, after subtracting the two Raman spectra measure at two different time points, the spectra peaks at 1125 $\text{cm}^{-1}$.
@@ -59,13 +118,25 @@ Recently, \cite{sitecompare} measures Raman glucose at forearm, wrist, and index
 
 \section{Preprocessing techniques and Data modeling}
 
+\begin{figure}
+    \caption{(\textbf{A}) Blood glucose value with 1125 $\text{cm}^{-1}$ relative intensity. (\textbf{B}) Concentration-dependent Raman relative intensities of glucose (1125 $\text{cm}^{-1}$) \citep{solutionGlucose}}
+    \centerline{\includegraphics[width=3in]{figures/bloodGlucose-relative1125.png}}\label{fig:bloodGlucose-relative1125}
+    % \small{\textit{Note.} Additional notes goes here.}
+\end{figure}
+
+\begin{figure}
+    \caption{(\textbf{B}) Showing the linear relationship between normalized 1125 $\text{cm}^{-1}$ with blood glucose ($R^2 = 0.94$) \citep{directGlucose}}
+    \centerline{\includegraphics[width=3in]{figures/bloodGlucose-relative1125-directGlucose.jpeg}}\label{fig:bloodGlucose-relative1125-directGlucose}
+    % \small{\textit{Note.} Additional notes goes here.}
+\end{figure}
+
 There are primarily two preprocessing options. 
 Either extracting the features or utilize the complete Raman spectrum as an input.
 The full spectrum analysis pair with partial least squares (PLS) is widely used \citep{forearm2014, sitecompare, forearm2005, directGlucose}.
 The results vary from $R^2 = 0.62$ \citep{directGlucose}, $R^2 = 0.83$ \citep{forearm2005,forearm2014}, and RMSE of around 65 $\pm$ 0.4 ml/dL in~\cite{sitecompare}.
 The preprocessing can be done by hand-pick \citep{directGlucose,solutionGlucose} or automatically \citep{ramanNailFold2019, sitecompare} pick the features.
 Hand-pick features were performed by normalizing the spectra with either protein and lipid peaks (1450 $\text{cm}^{-1}$) \citep{directGlucose} or hemoglobin peaks (1549 $\text{cm}^{-1}$) \citep{solutionGlucose}.
-It demonstrated that the normalized 1125 $\text{cm}^{-1}$ has a linear correlation with in vivo blood glucose at $R^2 = 0.91$ \citep{solutionGlucose}.
+It is demonstrated that the normalized 1125 $\text{cm}^{-1}$ has a linear correlation with in vivo blood glucose at $R^2 = 0.95$ \citep{solutionGlucose}.
 In~\cite{directGlucose}, normalized 911, 1060, 1125 $\text{cm}^{-1}$ with 1450 $\text{cm}^{-1}$ were utilized as inputs of the more complex multiple linear regression (MLR) which achieved $R^2 = 0.91$.
 The automatic feature extraction was demonstrated with PCA \citep{ramanNailFold2019} and SOM \citep{sitecompare}.
 
