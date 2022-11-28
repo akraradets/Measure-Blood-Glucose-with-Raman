@@ -11,7 +11,7 @@ To date, the acceptable and commercialized CGM approach is through sensor implan
 Non-invasive techniques through analyte (e.g., glucose solution, interstitial fluid (ISF)) analysis have attracted much interest.
 Optical-based methods were proven to yield superior results, achieving strong selectivity of glucose fingerprints on complex analytes such as blood \citep{opticalBest}.
 Among the optical-based methods (e.g., far infrared to fluorescence spectroscopy), Raman spectroscopy appears promising due to its insensitivity to water (e.g., as compared to near-infrared) and its ability to accurately measure glucose quantitatively and transcutaneously \citep{directGlucose}.
-Anyhow, Raman spectroscopy comes with challenge, as is often confounded with fluorescence artifacts, but of which is commonly countered by adjusting the laser intensity or measuring schemes.  
+Anyhow, Raman spectroscopy comes with challenge, as is often confounded with fluorescence artifacts, but of which is commonly countered by adjusting the laser intensity or measuring times.  
 The rise of Raman spectroscopy is also timely due to its recent advancement of laser technology~\citep{horibahistory}.
 
 The use of Raman spectroscopy for measuring blood glucose can be dated back as far as 2005.
@@ -32,36 +32,46 @@ The accuracy of the glycemic measurement should be comparable to that of the wel
 This justification was made because Raman spectroscopy was demonstrated to have at most 90\% association with blood glucose. 
 In addition, body movements may potentially confound the measurements, so it is advisable to set the objective for daily users rather than for clinical use.
 
-% Fortunately, the analyte analysis noninvasive techniques have been studied as a means to measure glycemic continuously. 
-% Among techniques, the ones using optical methods yield a better result \citep{opticalBest}.
-% Ranging from far infrared to fluorescence spectroscopy, Raman spectroscopy is the most interesting technique. 
-% Not only it is insensitive to water, but it is also shown to be able to quantitatively measure glucose transcutaneously \citep{directGlucose}.
-% Recently, \cite{ramanGlucoseWatch} shows the prototype of a wearable blood glucose smartwatch that employs Raman spectroscopy. 
-% However, evidence of a workable device is absent. 
 
 \section{Statement of the Problem}
 
-The difficulty of this work is brought on by the wearable's general limitations, limited power and battery.
-Therefore, the measuring site, scheme, and model have to be chosen carefully.
-In addition, comparing previous results is difficult since they all used different equipment, parameters, and methodology.
+Due to methodological variations, it is challenging to compare previous findings.
+For instance, five measuring sites of the human body have been reported with success. 
+However, only the wrist, fingertip, and forearm are being compared with the same methodology \citep{sitecompare}.
+The nail fold is a promising measuring site because its thin epidermis layer makes it easier for the laser to reach the microvessel in the dermis \citep{ramanNailFold2019}.
+And thenar has been chosen as a measuring site for a portable Raman-based SMBG device \citep{glucobeam}.
+Because all the work employs statistical-based analysis using the full spectrum, it can be argued that the high accuracy of glucose prediction may be due to the contribution of correlated artifacts signal rather than the glucose signal itself \citep{directGlucose}.
+We can determine which site produces the strongest correlation between glucose fingerprint and glycemic using the direct measurement of glucose technique \citep{directGlucose}.
+
+Data preprocessing and modeling are needed to be compared. 
+As mentioned above, one method that has been employed widely is using statistical-based analysis using the full spectrum.
+Another method is to normalize the recorded spectra with either hemoglobin peak (1549 $\text{cm}^{-1}$) \citep{solutionGlucose} or protein and lipid peak (1450 $\text{cm}^{-1}$) \citep{directGlucose}.
+With the normalization method, a smaller set of spectra can be selected for modeling.
+In addition, this method has been showed to produce a feature the has a linear relationship with glycemic \citep{solutionGlucose,directGlucose}.
+However, the method has never been employed together with human subjects.
+
+
+% The difficulty of this work is brought on by the wearable's general limitations, limited power and battery.
+% Therefore, the measuring site, times, and model have to be chosen carefully.
+% In addition, comparing previous results is difficult since they all used different equipment, parameters, and methodology.
 % that are chosen will have a significant impact on how usable the wearable is.
 
-The measuring site (forearm, wrist, nail fold, and fingertip) may yield different Raman scattering signals.
+% The measuring site (forearm, wrist, nail fold, and fingertip) may yield different Raman scattering signals.
 % Results from  may differ depending on the measurement site .
-In terms of design, the wrist is the ideal site since it can be employed in the wearable such as smartwatches which are already widely daily driven and adopted.
-If other sites are chosen then another form of wearable has to be considered which will raise the usability question.
-Although the forearm is a superior option when compared to the wrist and fingertip in the indirect measurement \citep{sitecompare}, proof of direct glucose measurement is absent.
-Furthermore, each site has a different skin structure, thus the appropriate measuring scheme should also be different.
-As a result, it is necessary to research the measuring sites and their optimal scheme in order to assess the direct glucose measurement and evaluate the sites based to their correlation with glycemic, Signal-to-noise ratio (SNR), and total measuring duration.
-The measuring scheme will be benchmarked with Apple Watch SpO2 sensor which uses a total measuring time of 15 seconds \citep{applewatch}.
+% In terms of design, the wrist is the ideal site since it can be employed in the wearable such as smartwatches which are already widely daily driven and adopted.
+% If other sites are chosen then another form of wearable has to be considered which will raise the usability question.
+% Although the forearm is a superior option when compared to the wrist and fingertip in the indirect measurement \citep{sitecompare}, proof of direct glucose measurement is absent.
+% Furthermore, each site has a different skin structure, thus the appropriate measuring times should also be different.
+% As a result, it is necessary to research the measuring sites and their optimal time in order to assess the direct glucose measurement and evaluate the sites based to their correlation with glycemic, Signal-to-noise ratio (SNR), and total measuring duration.
+% The measuring times will be benchmarked with Apple Watch SpO2 sensor which uses a total measuring time of 15 seconds \citep{applewatch}.
 
-The choice of model should be based on both resource consumption (model complexity) and accuracy (predictability).
-Earlier studies demonstrated that the normalized 1125 $\text{cm}^{-1}$ has a linear relationship with in vivo blood glucose concentration ($R^2 = 0.95$) \citep{solutionGlucose}.
-However, the normalization-based works did not measure Raman from human subjects \citep{solutionGlucose,directGlucose}.
-Other works that involve human subjects use various preprocessing methods, such as principal component analysis (PCA) \citep{ramanNailFold2019} and self-organizing maps (SOM) \citep{sitecompare}.
-The aforementioned factors make it impossible to compare models.
-In addition, resource consumption should be assessed as its impacts the wearable battery life.
-Therefore, a thorough comparison of preprocessing and model selection is required.
+% The choice of model should be based on both resource consumption (model complexity) and accuracy (predictability).
+% Earlier studies demonstrated that the normalized 1125 $\text{cm}^{-1}$ has a linear relationship with in vivo blood glucose concentration ($R^2 = 0.95$) \citep{solutionGlucose}.
+% However, the normalization-based works did not measure Raman from human subjects \citep{solutionGlucose,directGlucose}.
+% Other works that involve human subjects use various preprocessing methods, such as principal component analysis (PCA) \citep{ramanNailFold2019} and self-organizing maps (SOM) \citep{sitecompare}.
+% The aforementioned factors make it impossible to compare models.
+% In addition, resource consumption should be assessed as its impacts the wearable battery life.
+% Therefore, a thorough comparison of preprocessing and model selection is required.
 
 % \begin{sloppypar}
 % Raman spectroscopy is catching attention as the promising method for measuring glycemic \citep{directGlucose} and agreed upon by multiple researchers \citep{forearm2005, ramanNailFold2019, directGlucose, sitecompare}.
@@ -79,13 +89,13 @@ Therefore, a thorough comparison of preprocessing and model selection is require
 % As a result, we can identify the peaks of glucose by following the subtraction technique of~\cite{directGlucose}.
 % \end{sloppypar}
 
-% The experiment must be conducted to finalize and confirm the measuring scheme. 
+% The experiment must be conducted to finalize and confirm the measuring times. 
 % Raman spectroscopy with 785 nm laser was used in \citep{forearm2014, sitecompare, ramanNailFold2019} and showed success.
-% However, the schemes were different. 
+% However, the times were different. 
 % Measuring configuration is 10 times accumulation of 10 seconds exposure in \cite{forearm2014}, nine times accumulation of 30 seconds exposure in \citep{sitecompare}, and six times accumulation of 40 seconds exposure in \citep{ramanNailFold2019}. 
-% In the lab scenario, the measuring scheme can be any that yields the wanted result. 
+% In the lab scenario, the measuring times can be any that yields the wanted result. 
 % In contrast, a wearable does have a power and battery limit. 
-% The measuring scheme should be selected to suit our goal.
+% The measuring times should be selected to suit our goal.
 % Since we want to develop a wearable device, a benchmark of 15 seconds is chosen following the SpO2 measuring of the Apple Watch 8 \citep{applewatch}.
 
 % Participant selection and experiment are different across papers.
@@ -108,10 +118,10 @@ To achieve this, we separate the project into four studies.
 
 \subsection{Study 1: Confirming the parameters}
 
-\textbf{Objective}: To study the measuring site and schemes.\\
+\textbf{Objective}: To study the measuring site and times.\\
 \textbf{Independent Variables}: 
 \begin{enumerate}
-    \item Measuring Scheme
+    \item Measuring time
     \item Measuring Site
     \begin{enumerate}
         \item Wrist
@@ -123,7 +133,7 @@ To achieve this, we separate the project into four studies.
 
 \begin{sloppypar}
     \textbf{Dependent Variables}: Spectra peaks around 1125 $\text{cm}^{-1}$ with the lowest total measuring time.\\
-    \textbf{Outcome}: Confirm the suited measuring site and scheme.
+    \textbf{Outcome}: Confirm the suited measuring site and times.
 \end{sloppypar}
 
 % The first study aims to confirm the parameters starting from laser selection (wavelength), measuring time, and measuring site.
@@ -143,7 +153,7 @@ To achieve this, we separate the project into four studies.
 \textbf{Outcome}: The model that results in glycemic prediction correlation $R^2 > 0.8$ with actual glycemic, and resource usage.
 
 % The second study aims to understand and reproduce the Raman scattering of blood glucose.
-% This study will require 15 subjects for data collection using the OGTT scheme.
+% This study will require 15 subjects for data collection using the OGTT times.
 % The preprocessing and modeling will be done following the previous works.
 % At this stage, the performance and power consumption of models will be recorded for the next study.
 
