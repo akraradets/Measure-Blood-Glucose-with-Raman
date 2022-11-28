@@ -15,16 +15,23 @@ Its minimally-invasive nature prevents the pervasiveness of monitoring glucose.
 The non-invasive approach such as Raman spectroscopy has been studied as a means to measure glycemic in vivo.
 Thus, wearable (continuous, non-invasive, pervasive) self-monitoring blood glucose (SMBG) is possible.
 % 2. Problem: Very very measurable problem; start with a signal word like “However”, “Anyhow”, or “Despite”.
-However, due to methodological variations, it is challenging to compare previous findings.
+However, the development of wearable Raman-based SMBGs is underexplored.
+There are several challenges regarding this development.
+First, the most suitable measuring sites (wrist, forearm, nail fold, fingertip, and thenar) to directly measure glucose scattering remains unknown.  Although past work reported high accuracy of glucose prediction from all these five sites, the high accuracy may be attributable to the use of the full spectrum which may contain unintended signal artifacts that correlated with glycemic \citep{directGlucose}.
+Second, proper features (engineering) remain underexplored.
+Although past work proposed feature engineering techniques such as principal component analysis \citep{ramanNailFold2019} or protein/hemoglobin normalization \citep{solutionGlucose,directGlucose}, the lack of formal comparison makes it difficult to understand what works.  
+Third, no work has considered the development of wearable Raman-based SMBGs.
+The key challenge here is to achieve practicality in the real world while preserving/not losing too much accuracy (e.g., accuracy may drop when the wearable is worn as a watch but is more practical and usable).
 % 3. Solution: Use verb wisely; explore/investigate/develop/compare.
-Thus, a comprehensive comparison between measuring sites, measuring times, preprocessing techniques, and models is studied here.
+Thus, a comprehensive comparison between measuring sites and feature engineering is studied here.
 Furthermore, a prototype of wearable SMBG is developed and evaluated.
 % 4. Key finding (2 - 3 sentences): Summarize ONLY the key findings - it means interesting findings.
 We found that the wrist is the best site to measure glycemic. 
 When use normalized 1125 $\text{cm}^{-1}$, it achieved $R^2 = 0.9$ with blood glucose.
 Our prototype measurement achieves correlation with blood glucose over $R^2 = 0.8$ comparable to reputable wearable SpO2 sensors in the market. 
 % 5. Contributions: Why this is important to be solved; what impact it can bring.
-Our results contribute to (1) the best site to measure glycemic in the human and measuring scheme, 
-(2) effective preprocessing technique and model for predicting the glycemic,
-(3) prototyping the wearable SMBG using Raman spectroscopy.
+Our results contribute to 
+(1) comparing the measuring sites for direct measurement of glucose in the blood, 
+(2) find the proper feature engineering for predicting the glycemic,
+(3) prototyping and evaluating the wearable Raman-based SMBGs as a means for daily CGM.
 \end{sloppypar}

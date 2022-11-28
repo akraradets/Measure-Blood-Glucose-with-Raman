@@ -35,68 +35,88 @@ In addition, body movements may potentially confound the measurements, so it is 
 
 \section{Statement of the Problem}
 
-Due to methodological variations, it is challenging to compare previous findings.
-For instance, five measuring sites of the human body have been reported with success. 
-However, only the wrist, fingertip, and forearm are being compared with the same methodology \citep{sitecompare}.
-The nail fold is a promising measuring site because its thin epidermis layer makes it easier for the laser to reach the microvessel in the dermis \citep{ramanNailFold2019}.
-And thenar has been chosen as a measuring site for a portable Raman-based SMBG device \citep{glucobeam}.
-Because all the work employs statistical-based analysis using the full spectrum, it can be argued that the high accuracy of glucose prediction may be due to the contribution of correlated artifacts signal rather than the glucose signal itself \citep{directGlucose}.
-We can determine which site produces the strongest correlation between glucose fingerprint and glycemic using the direct measurement of glucose technique \citep{directGlucose}.
+First, it remains unknown of the effective measuring sites.
+Due to methodological variations, it is challenging to compare previous findings.  
+In addition, past works have a questionable methodology, i.e., it might be claimed that the great accuracy of glucose prediction may be attributable to the use of the full spectrum which may contain unintended signal artifacts that correlated with glycemic \citep{directGlucose}.
+Five successful measuring locations on the human body have been documented. 
+However, only the wrist, fingertip, and forearm were compared with the same methodology \citep{sitecompare}.
+The nail fold is a promising measuring site because its thin epidermis layer makes it easier for the laser to penetrate the microvessel in the dermis \citep{ramanNailFold2019}.
+Thenar has been chosen as a measuring site for a portable Raman-based SMBG device \citep{glucobeam}.
+This work seeks to identify the strongest correlation between glucose fingerprint and glycemic using the direct measurement of glucose technique \citep{directGlucose}.
 
-Data preprocessing and modeling are needed to be compared. 
-As mentioned above, one method that has been employed widely is using statistical-based analysis using the full spectrum.
-Another method is to normalize the recorded spectra with either hemoglobin peak (1549 $\text{cm}^{-1}$) \citep{solutionGlucose} or protein and lipid peak (1450 $\text{cm}^{-1}$) \citep{directGlucose}.
-With the normalization method, a smaller set of spectra can be selected for modeling.
-In addition, this method has been showed to produce a feature the has a linear relationship with glycemic \citep{solutionGlucose,directGlucose}.
-However, the method has never been employed together with human subjects.
+Second, valid feature engineering approach remains to be investigated.  
+Particularly, past work used primarily two different approaches. 
+The first approach uses statistical-based analysis on full spectrum data with additional preprocessing such as dimension reduction or feature importance \citep{ramanNailFold2019, sitecompare, forearm2005, forearm2014}.
+The second method is to normalize the spectrum with either hemoglobin peak (1549 $\text{cm}^{-1}$) \citep{solutionGlucose} or protein and lipid peak (1450 $\text{cm}^{-1}$) \citep{directGlucose} and handpick a smaller set of spectra for modeling \citep{solutionGlucose,directGlucose}.
+This work seeks to compare these two methodological approaches on human subjects.
 
+Third, no work has considered the development of wearable Raman-based SMBG.
+Developing wearable has several challenges.  
+Regrading measuring site, the wrist is the ideal option for measuring sites because it can be easily adopted in the widely use platform (smart band/watch).
+This option yields the best pervasiveness but not the accuracy.
+The similar situation applies to modeling.
+A more complex model may fit the data more accurately in exchange for efficiency.
+This work seeks to both develop a practical wearable Raman-based SMBG in daily use to achieve CGM and evaluate the level of compromise in order to archives this goal.
 
 \section{Objectives}
 
-Our objective is to develop a wearable SMBG.
-To achieve this, we separate the project into four studies.
+We separate this works into four studies.
 
-\subsection{Study 1: Confirming the parameters}
+\subsection{Study 1: Measuring sites}
 
-\textbf{Objective}: To study the measuring site and times.\\
+\textbf{Objective}: To study the measuring site.\\
 \textbf{Independent Variables}: 
 \begin{enumerate}
-    \item Measuring time
     \item Measuring Site
     \begin{enumerate}
         \item Wrist
         \item Forearm
         \item Index fingertip
         \item Index nail fold
+        \item Thenar
     \end{enumerate}
 \end{enumerate}
 
 \begin{sloppypar}
-    \textbf{Dependent Variables}: Spectra peaks around 1125 $\text{cm}^{-1}$ with the lowest total measuring time.\\
-    \textbf{Outcome}: Confirm the suited measuring site and times.
+    \textbf{Dependent Variables}: The strongest direct measurement of glucose spectra (1125 $\text{cm}^{-1}$).\\
+    \textbf{Outcome}: Ranking of measuring sites.
 \end{sloppypar}
 
 
-\subsection{Study 2: Raman scattering of blood glucose study}\label{intro-s2}
+\subsection{Study 2: Feature engineering}\label{intro-s2}
 
-\textbf{Objective}: Study Raman scattering of blood glucose and build a model to predict the glycemic for a wearable device.\\
-\textbf{Independent Variables}: Raman scattering of blood\\
+\textbf{Objective}: Study the effect of feature engineering and selection.\\
+\textbf{Independent Variables}:
+\begin{enumerate}
+    \item Feature engineering technique
+    \begin{enumerate}
+        \item No engineering
+        \item PCA (baseline)
+        \item Normalization with protein and lipid peak (1450 $\text{cm}^{-1}$)
+        \item Normalization with hemoglobin peak (1549 $\text{cm}^{-1}$)
+    \end{enumerate}
+    \item Feature selection and modeling
+    \begin{enumerate}
+        \item Full spectrum + PLS (baseline)
+        \item single 1125 $\text{cm}^{-1}$ peak + LR
+        \item 911, 1060, 1125 $\text{cm}^{-1}$ peak + MLR
+    \end{enumerate}
+\end{enumerate}
 \textbf{Dependent Variables}: Glycemic\\
-\textbf{Outcome}: The model that results in glycemic prediction correlation $R^2 > 0.8$ with actual glycemic, and resource usage.
+\textbf{Outcome}: The effect of feature engineering, selection, and modeling on prediction accuracy.
 
-\subsection{Study 3: Designing and developing wearable blood glucose device}
+\subsection{Study 3: Designing and developing wearable Raman-based SMBG}
 
-\textbf{Objective}: Design and develop a prototype of a wearable SMBG.\\
+\textbf{Objective}: Design and develop a prototype of a wearable Raman-based SMBG.\\
 \textbf{Outcome}: A prototype.
 
 
 \subsection{Study 4: Device Evaluation}
 
 \textbf{Objective}: To evaluate the prototype, we redo Section~\ref{intro-s2} experiment with our prototype.\\
-\textbf{Independent Variables}: Raman scattering of blood\\
+\textbf{Independent Variables}: Measured Raman scattering\\
 \textbf{Dependent Variables}: Glycemic\\
 \textbf{Outcome}: Prototype achieves glycemic prediction correlation $R^2 > 0.8$ with actual glycemic.
-
 
 \section{Organization of the Study}
 
