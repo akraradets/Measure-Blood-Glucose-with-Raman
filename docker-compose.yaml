@@ -1,9 +1,10 @@
 version: '3.9'
 services:
   python:
+    image: akraradets/bloodglucose-python:v0.0.1
     build: 
       context: .
-      dockerfile: .Dockerfile
+      dockerfile: python.Dockerfile
     volumes:
       - ./projects/:/root/projects
       - vscode-python:/root/.vscode-server
@@ -16,7 +17,7 @@ services:
     #           capabilities: [gpu]
 
   latex:
-    image: bloodglucose-latex
+    image: akraradets/bloodglucose-latex:v0.0.1
     build: 
       context: .
       dockerfile: latex.Dockerfile
