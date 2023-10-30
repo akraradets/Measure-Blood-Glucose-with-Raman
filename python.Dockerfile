@@ -1,4 +1,4 @@
-FROM python:3.12.0-bookworm
+FROM python:3.10.13-bookworm
 
 # https://vsupalov.com/docker-arg-env-variable-guide/
 # https://bobcares.com/blog/debian_frontendnoninteractive-docker/
@@ -20,6 +20,7 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 
+RUN apt install -y build-essential
 RUN apt install -y vim
 
 RUN pip3 install --upgrade pip
@@ -28,6 +29,8 @@ RUN pip3 install pandas
 RUN pip3 install matplotlib
 RUN pip3 install scikit-learn
 RUN pip3 install BaselineRemoval
+RUN pip3 install ipykernel
+RUN pip3 install spectrochempy --default-timeout=1000
 
 WORKDIR /root/projects
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
