@@ -32,6 +32,9 @@ RUN pip3 install BaselineRemoval
 RUN pip3 install ipykernel
 RUN pip3 install spectrochempy --default-timeout=1000
 
+# X410
+ENV DISPLAY host.docker.internal:0.0
+
 WORKDIR /root/projects
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
