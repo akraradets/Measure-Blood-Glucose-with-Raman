@@ -1,26 +1,29 @@
-version: '3'
+version: '3.9'
 services:
   python:
-    image: python
     build: 
       context: .
       dockerfile: .Dockerfile
     volumes:
       - ./projects/:/root/projects
-      - ./.vscode-server/python:/root/.vscode-server
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+      - vscode-python:/root/.vscode-server
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
 
   latex:
-    image: latex
+    image: bloodglucose-latex
     build: 
       context: .
       dockerfile: latex.Dockerfile
     volumes:
       - ./projects/:/root/projects
-      - ./.vscode-server/latex:/root/.vscode-server
+      - vscode-latex:/root/.vscode-server
+
+volumes:
+  vscode-latex:
+  vscode-python:
