@@ -47,7 +47,7 @@ def read_txt(filename):
     dataset.history = f"Imported from LabSpec6 text file {filename}"
 
     # reset modification date to cretion date
-    dataset._modified = dataset._created
+    dataset._modified = dataset._created #type: ignore
 
     return dataset
 

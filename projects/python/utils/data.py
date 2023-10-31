@@ -9,7 +9,7 @@ def add_meta_to_text(path:str):
     target = spiltted[0]
     gating = spiltted[1]
     laser = spiltted[2]
-    exposition = spiltted[3]
+    exposition = spiltted[3].split(' ')[0]
     accumulation = spiltted[4]
     year = spiltted[5]
     month = spiltted[6]
@@ -26,7 +26,7 @@ def add_meta_to_text(path:str):
         f.write(f"#Sample={target}\n")
         f.write(f"#Laser={laser}\n")
         #Grating=600
-        f.write(f"#Gating={gating}\n")
+        f.write(f"#Grating={gating}\n")
         #Exposition=10
         f.write(f"#Exposition={exposition}\n")
         #Accumulation=1
