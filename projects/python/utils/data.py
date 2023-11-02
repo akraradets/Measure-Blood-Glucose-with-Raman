@@ -1,5 +1,22 @@
 import os
 
+def limite_spectrum_range(path:str, upper_bound:float, lower_bound:float):
+    new_content:list[str] = []
+    with open(file=path, mode="r+") as f:
+        for idx, line in enumerate(f.readlines()):
+            if(line[0] == "#"): 
+                new_content.append(line)
+                continue
+            splitted = line.rstrip().split('\t')
+            spectrum = float(splitted[0])
+            value = float(splitted[1])
+            if spectrum > upper_bound: continue
+            if spectrum < lower_bound: break
+            new_content.append(line)
+        f.seek(0,0)
+        f.writelines(new_content)
+        f.truncate()
+
 def add_meta_to_text(path:str):
     filename:str = os.path.split(path)[1]
     filename, ext = os.path.splitext(filename)
