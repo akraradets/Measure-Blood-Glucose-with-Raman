@@ -29,9 +29,9 @@ RUN pip3 install pandas
 RUN pip3 install matplotlib
 RUN pip3 install scikit-learn
 RUN pip3 install BaselineRemoval
-RUN pip3 install ipykernel
 RUN pip3 install spectrochempy --default-timeout=1000
 
+RUN pip install --upgrade pip ipython ipykernel
 # X410
 ENV DISPLAY host.docker.internal:0.0
 
@@ -39,3 +39,4 @@ WORKDIR /root/projects
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 CMD tail -f /dev/null
+# CMD python -m ipykernel_launcher -f $DOCKERNEL_CONNECTION_FILE
