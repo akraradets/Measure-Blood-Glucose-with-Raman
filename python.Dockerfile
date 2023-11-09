@@ -23,7 +23,14 @@ ENV LANGUAGE en_US:en
 RUN apt install -y build-essential
 RUN apt install -y vim
 
-RUN pip3 install --upgrade pip
+RUN pip install --upgrade pip
+# Jupyter lib
+RUN pip install --upgrade pip ipython ipykernel
+# Export PDF
+RUN pip install nbconvert
+RUN apt install texlive-xetex texlive-fonts-recommended texlive-plain-generic
+
+
 RUN pip3 install numpy
 RUN pip3 install pandas
 RUN pip3 install matplotlib
@@ -31,7 +38,6 @@ RUN pip3 install scikit-learn
 RUN pip3 install BaselineRemoval
 RUN pip3 install spectrochempy --default-timeout=1000
 
-RUN pip install --upgrade pip ipython ipykernel
 # X410
 ENV DISPLAY host.docker.internal:0.0
 
