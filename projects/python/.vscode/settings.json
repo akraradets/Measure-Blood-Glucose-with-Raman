@@ -1,0 +1,9 @@
+{
+    "grammarly.selectors": [
+        {
+            "language": "Log",
+            "scheme": "output",
+            "pattern": "extension-output-znck.grammarly-#2-Grammarly"
+        }
+    ]
+}
