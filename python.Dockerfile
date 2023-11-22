@@ -28,7 +28,7 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade pip ipython ipykernel
 # Export PDF
 RUN pip install nbconvert
-RUN apt install texlive-xetex texlive-fonts-recommended texlive-plain-generic
+RUN apt install -y texlive-xetex texlive-fonts-recommended texlive-plain-generic
 
 
 RUN pip3 install numpy
