@@ -7,6 +7,7 @@
   - [The rabbit hole](#the-rabbit-hole)
   - [What we have done](#what-we-have-done)
   - [MILESTONE](#milestone)
+  - [Why are we sharing this?](#why-are-we-sharing-this)
 
 # Measure Blood Glucose with Raman Spectroscopy
 
@@ -69,3 +70,12 @@ So this year (2024), with all the failures we had, we came up with a plan.
 - [ ] Reproduce measuring glucose concentration in `blood` by February 2024
 - [ ] Implement Hilbert Vibration Decomposition (HVD) for extracting the Raman feature by February 2024
 - [ ] If all the above works, Reproducing measuring glucose concentration `on-skin Raman` by April 2024
+
+## Why are we sharing this?
+
+Well, we do need help.
+So this is the way we think we can find collaboration.
+
+And, our objective is to publicize what we learned and found in the hope it would benefit someone who wants to jump into this field of research. 
+
+We might not be able to make a journal/paper but we do believe our experience is valuable to someone....
