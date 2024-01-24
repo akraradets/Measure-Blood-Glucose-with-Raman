@@ -5,6 +5,7 @@
   - [What are we doing?](#what-are-we-doing)
   - [How?](#how)
   - [The rabbit hole](#the-rabbit-hole)
+  - [What we have done](#what-we-have-done)
   - [MILESTONE](#milestone)
 
 # Measure Blood Glucose with Raman Spectroscopy
@@ -40,7 +41,7 @@ Thus, we chose to use Raman.
 
 This decision is backed up by many publications.
 Raman can be used to measure the concentration in (1) water, and (2) blood.
-In addition, multiple researches show that a measurement of Raman on (3) skin can also be used to find Glucose concentration in blood.
+In addition, multiple researches show that a measurement of Raman on (3) skin can also be used to find Glucose concentration in blood (glycemia).
 The results show a very high correlation between the gold-standard invasive method and the on-skin Raman method, thus, luring us to this rabbit hole.
 
 ## The rabbit hole
@@ -49,6 +50,18 @@ If this is easy then we would not discuss this.
 Our research group consists of one Ph.D. in Computer Science and a master's student in Data Science (who has experience in Raman measurement).
 The project kicked off in 2022 but we have not been able to reproduce any publication.
 So this year (2024), with all the failures we had, we came up with a plan.
+
+## What we have done
+
+- We built a lab room for Raman's experiment.
+  - We fixed the problem with noise in our measurement.
+- We 3D print the tube that encloses the Raman scattering.
+- We conducted several `on-skin Raman` experiments.
+  - We did an OGTT experiment in August 2023.
+  - We experimented on different measuring sites (fingertip, nail fold, thenar, forearm) Sep-Oct 2023.
+  - We did an extensive experiment (because of the noise mentioned earlier) in November 2023.
+  - We experimented with the stretch method to change the volume of blood in November 2023.
+- We studied Hilbert Vibration Decomposition (HVD) as a preprocessing for `on-skin Raman` in December 2023.
 
 ## MILESTONE
 
