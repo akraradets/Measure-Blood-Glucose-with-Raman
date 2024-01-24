@@ -23,26 +23,22 @@ ENV LANGUAGE en_US:en
 RUN apt install -y build-essential
 RUN apt install -y vim
 
+WORKDIR /root/projects
+
+# pipenv
+ENV PIPENV_VENV_IN_PROJECT=1
 RUN pip install --upgrade pip
-# Jupyter lib
-RUN pip install --upgrade pip ipython ipykernel
+RUN pip install pipenv
+
 # Export PDF
-RUN pip install nbconvert
 RUN apt install -y texlive-xetex texlive-fonts-recommended texlive-plain-generic
 RUN apt install -y pandoc
-
-
-RUN pip3 install numpy
-RUN pip3 install pandas
-RUN pip3 install matplotlib
-RUN pip3 install scikit-learn
-RUN pip3 install BaselineRemoval
-RUN pip3 install spectrochempy --default-timeout=1000
+RUN pipenv install
 
 # X410
-ENV DISPLAY host.docker.internal:0.0
+ENV DISPLAY host.docker.internal:0
 
-WORKDIR /root/projects
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 CMD tail -f /dev/null

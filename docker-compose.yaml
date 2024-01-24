@@ -5,8 +5,12 @@ services:
     build: 
       context: .
       dockerfile: python.Dockerfile
+    environment:
+      - DISPLAY=${HOSTNAME}:0
     volumes:
       - ./projects/:/root/projects
+      - /tmp/.X11-unix:/tmp/.X11-unix 
+      - venv:/root/projects/python/.venv
       - vscode-python:/root/.vscode-server
     # deploy:
     #   resources:
@@ -26,5 +30,6 @@ services:
       - vscode-latex:/root/.vscode-server
 
 volumes:
+  venv:
   vscode-latex:
   vscode-python:
