@@ -5,6 +5,7 @@
   - [What are we doing?](#what-are-we-doing)
   - [How?](#how)
   - [The rabbit hole](#the-rabbit-hole)
+  - [MILESTONE](#milestone)
 
 # Measure Blood Glucose with Raman Spectroscopy
 
@@ -47,3 +48,11 @@ The results show a very high correlation between the gold-standard invasive meth
 If this is easy then we would not discuss this.
 Our research group consists of one Ph.D. in Computer Science and a master's student in Data Science (who has experience in Raman measurement).
 The project kicked off in 2022 but we have not been able to reproduce any publication.
+So this year (2024), with all the failures we had, we came up with a plan.
+
+## MILESTONE
+
+- [ ] Reproduce measuring glucose concentration in `water` by February 2024
+- [ ] Reproduce measuring glucose concentration in `blood` by February 2024
+- [ ] Implement Hilbert Vibration Decomposition (HVD) for extracting the Raman feature by February 2024
+- [ ] If all the above works, Reproducing measuring glucose concentration `on-skin Raman` by April 2024
