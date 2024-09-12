@@ -1,3 +1,9 @@
+This repository is no longer maintained.
+We moved to https://github.com/AIT-brainlab/raman-for-glucose-measurement
+
+
+
+
 <h2>Table of Content</h2>
 
 - [Measure Blood Glucose with Raman Spectroscopy](#measure-blood-glucose-with-raman-spectroscopy)
